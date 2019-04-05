@@ -28,10 +28,24 @@ class Person {
     }
   
     demo (subject) {
-      return `Today we are learning about {subject}`;
+      return `Today we are learning about ${subject}`;
     }
     grade(student , subject) {
-      return  '{student.name} receives a perfect score on {subject}'
+      return  `${student.name} receives a perfect score on ${subject}`;
+    }
+
+    deductPoints(student) {
+      this.grade = Math.floor((Math.random() * 100) + 1); //Setting the student grade to a ramdom number.
+
+      const result = this.grade - Math.floor((Math.random() * 10));
+    
+      console.log(`The student new Grade is ${result}`);
+    
+        if (result>=70) {
+          return `Student ${this.name} is Approved`;
+        } else {
+          return `Student ${this.name} is Not Approved`;
+        }
     }
   }
   
@@ -41,6 +55,7 @@ class Person {
         this.previousBackground = student_att.previousBackground;
         this.className = student_att.className;
         this.favSubjects = student_att.favSubjects;
+        this.grade = student_att.grade;
     }
     listsSubjects() {
       return `Student favorite subjects: ${this.favSubjects}`;
@@ -63,11 +78,11 @@ class Person {
       this.favInstructor = ProjectManager_att.favInstructor;
     }
     standup(channel) {
-      return `${this.name} announces to ${channel}, @channel standy times!​​​​​`
+      return `${this.name} announces to ${channel}, @channel standy times!​​​​​`;
     }
   
-    debugsCode() {
-  
+    debugsCode(student , subject) {
+      return `${this.name} debugs ${student.name}'s code on ${subject}`;
     }
   }
   
@@ -89,24 +104,47 @@ class Person {
   });
   
   const Loid = new Student({
+      name: 'Loid',
+      location: 'NY',
+      age: 45,
+      gender: 'male',
+      grade: 89,
       previousBackground : 'Bartender',
       className : 'CCS234',
       favSubjects : ['HTML','CSS','Art','Music']
   })
   
+  const Louis = new Student({
+      name: 'Louis',
+      location: 'Canada',
+      age: 29,
+      gender: 'male',
+      grade: 89,
+      previousBackground : 'Technician',
+      className : 'CCS245',
+      favSubjects : ['HTML','CSS']
+  })
   const David = new ProjectManagers({
+      name: 'David',
+      location: 'Miami',
+      age: 34,
+      gender: 'male',
       gradClassName : 'CS1',
       favInstructor : 'Martha'
   })
   
   
-  console.log(Loid.listsSubjects());
+  console.log(Loid.listsSubjects()); //Invoking student list subjects
+  console.log(Laura.hello()); //Invoking method in Person class.
+  console.log(Loid.sprintChallenge('JavaScript IV')); //Invoking student method and passing an object and string as an argument 
+  console.log(Louis.PRAssignment('Math'));
+  console.log(fred.demo('C++'));
+  console.log(fred.grade(student={name:'Ernesto'}, 'Math'));
+  console.log(David.standup('Cool Channel'));
+  console.log(David.debugsCode(student= {name:'Troy'}, 'Geography'));
 
-
-
-
-
-
+  console.log(fred.deductPoints(Louis)); //STRETCH CHALLENGE
+  
 
 
 
